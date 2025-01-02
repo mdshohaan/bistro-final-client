@@ -1,5 +1,5 @@
 const MenuItem = ({ item }) => {
-  const { name, image, price, recipe } = item;
+  const { name, image, price, recipe } = item; //from PopularMenu
   return (
     <div className="flex space-x-2">
       <img

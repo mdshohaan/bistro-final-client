@@ -8,12 +8,12 @@ const Navbar = () => {
           to="/"
           className="transition-all duration-300 hover:bg-blue-600 hover:text-white"
         >
-         Home
+          Home
         </Link>
       </li>
       <li>
         <Link
-          to="menu"
+          to="/menu"
           className="transition-all duration-300 hover:bg-blue-600 hover:text-white"
         >
           Our Menu
@@ -21,8 +21,27 @@ const Navbar = () => {
       </li>
 
       <li>
-        <Link className="transition-all duration-300 hover:bg-blue-600 hover:text-white">
-          Item 3
+        <Link
+          to="/order/salad"
+          className="transition-all duration-300 hover:bg-blue-600 hover:text-white"
+        >
+          Order Food
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/login"
+          className="transition-all duration-300 hover:bg-blue-600 hover:text-white"
+        >
+          Login
+        </Link>
+      </li>
+      <li>
+        <Link
+          to="/signup"
+          className="transition-all duration-300 hover:bg-blue-600 hover:text-white"
+        >
+          Signup
         </Link>
       </li>
     </>
