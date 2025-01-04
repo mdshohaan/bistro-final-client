@@ -20,14 +20,14 @@ const SocialLogin = () => {
       axiosPublic.post("/users", userInfo).then((res) => {
         console.log(res.data);
         Swal.fire({
-          title: 'Google Login Successful.',
+          title: "Google Login Successful.",
           showClass: {
-              popup: 'animate__animated animate__fadeInDown'
+            popup: "animate__animated animate__fadeInDown",
           },
           hideClass: {
-              popup: 'animate__animated animate__fadeOutUp'
-          }
-      });
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
         navigate("/");
       });
     });
