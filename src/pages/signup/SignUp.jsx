@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AuthContext } from "../../providers/Authprovider";
 
 const SignUp = () => {
@@ -14,7 +16,7 @@ const SignUp = () => {
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const axiosPublic = useAxiosPublic();
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password).then((result) => {
@@ -22,16 +24,25 @@ const SignUp = () => {
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          console.log("user profile info updated");
-          reset();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User created successfully.",
-            showConfirmButton: false,
-            timer: 1500,
+          // create user entry in database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user added to the database");
+              reset();
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/");
+            }
           });
-          navigate("/");
         })
         .catch((error) => console.log(error));
     });
@@ -145,10 +156,11 @@ const SignUp = () => {
               </div>
             </form>
             <p>
-              <small>
+              <small className="px-6">
                 Already have an account <Link to="/login">Login</Link>
               </small>
             </p>
+            <SocialLogin/>
           </div>
         </div>
       </div>

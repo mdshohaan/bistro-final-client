@@ -4,6 +4,7 @@ import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from 'react-s
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin';
 import { AuthContext } from '../../providers/Authprovider';
 
 const Login = () => {
@@ -92,9 +93,11 @@ const Login = () => {
                                 <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
-                        <p><small>New Here? <Link to="/signup">Create an account</Link> </small></p>
+                        <p><small className='px-6'>New Here? <Link to="/signup">Create an account</Link> </small></p>
+                        <SocialLogin/>
                     </div>
                 </div>
+               
             </div>
         </>
     );

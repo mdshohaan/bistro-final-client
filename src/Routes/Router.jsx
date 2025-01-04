@@ -6,53 +6,57 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Menu from "../pages/Menu/Menu";
 import Order from "../pages/Order/Order";
-import SignUp from "../pages/signup/Signup";
+import SignUp from "../pages/signup/SignUp";
 import Secret from "../Shared/Secret";
 import PrivateRoute from "./PrivateRoute";
 
-
-
- export const Router = createBrowserRouter([
+export const Router = createBrowserRouter([
   {
     path: "/",
     element: <Main>Hello world!</Main>,
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
       },
       {
         path: "/menu",
-        element: <Menu></Menu>
+        element: <Menu></Menu>,
       },
       {
         path: "/order/:category",
-        element: <Order></Order>
+        element: <Order></Order>,
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <Login></Login>,
       },
       {
         path: "/signup",
-        element: <SignUp></SignUp>
+        element: <SignUp></SignUp>,
       },
       {
-        path: '/secret',
-        element: <PrivateRoute>
-          <Secret></Secret>
-        </PrivateRoute>
-      }
-    ]
+        path: "/secret",
+        element: (
+          <PrivateRoute>
+            <Secret></Secret>
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
   {
-    path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: 'cart',
-        element: <Cart></Cart>
-      }
-    ]
-  }
+        path: "cart",
+        element: <Cart></Cart>,
+      },
+    ],
+  },
 ]);
