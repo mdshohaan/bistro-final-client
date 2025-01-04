@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if(currentUser){
           // get token and store client
-          
+
       } else {
 
       }
